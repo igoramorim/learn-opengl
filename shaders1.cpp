@@ -1,7 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include <shader.h>
+#include "shader.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -49,13 +49,13 @@ int main()
 	}
 
 	// build and compile our shader program
-	Shader shader("shader1.vs", "shader1.fs");
+	Shader shader("shaders/shader1.vs", "shaders/shader1.fs");
 
 	// Vertex input data
 	float vertices[] = {
 		// positions        // colors
-		0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // bottom right
-	   -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  // bottom left
+		1.0f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  // bottom right
+	   -1.0f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  // bottom left
 		0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f   // top
 	};
 
@@ -94,7 +94,10 @@ int main()
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f); // Set the color used to clear the screen
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		float time = glfwGetTime();
+
 		shader.use(); // render the triangle
+		shader.setFloat("time", time);
 
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
