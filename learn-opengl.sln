@@ -15,6 +15,8 @@ Global
 		shaders|x86 = shaders|x86
 		shaders1|x64 = shaders1|x64
 		shaders1|x86 = shaders1|x86
+		textures|x64 = textures|x64
+		textures|x86 = textures|x86
 		triangles|x64 = triangles|x64
 		triangles|x86 = triangles|x86
 	EndGlobalSection
@@ -35,6 +37,10 @@ Global
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.shaders1|x64.Build.0 = shaders1|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.shaders1|x86.ActiveCfg = shaders1|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.shaders1|x86.Build.0 = shaders1|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.textures|x64.ActiveCfg = textures|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.textures|x64.Build.0 = textures|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.textures|x86.ActiveCfg = textures|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.textures|x86.Build.0 = textures|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.triangles|x64.ActiveCfg = debug triangles|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.triangles|x64.Build.0 = debug triangles|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.triangles|x86.ActiveCfg = debug triangles|Win32
