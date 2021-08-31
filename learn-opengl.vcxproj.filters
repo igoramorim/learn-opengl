@@ -36,6 +36,9 @@
     <ClCompile Include="textures1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="transformations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
