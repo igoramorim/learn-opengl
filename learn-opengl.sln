@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "learn-opengl", "learn-openg
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		coordinate-system|x64 = coordinate-system|x64
+		coordinate-system|x86 = coordinate-system|x86
+		coordinate-system1|x64 = coordinate-system1|x64
+		coordinate-system1|x86 = coordinate-system1|x86
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
@@ -27,6 +31,14 @@ Global
 		triangles|x86 = triangles|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system|x64.ActiveCfg = coordinate-system|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system|x64.Build.0 = coordinate-system|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system|x86.ActiveCfg = coordinate-system|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system|x86.Build.0 = coordinate-system|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system1|x64.ActiveCfg = coordinate-system1|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system1|x64.Build.0 = coordinate-system1|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system1|x86.ActiveCfg = coordinate-system1|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system1|x86.Build.0 = coordinate-system1|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Debug|x64.ActiveCfg = Debug|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Debug|x64.Build.0 = Debug|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Debug|x86.ActiveCfg = Debug|Win32
