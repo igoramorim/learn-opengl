@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "learn-opengl", "learn-openg
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		camera|x64 = camera|x64
+		camera|x86 = camera|x86
 		coordinate-system|x64 = coordinate-system|x64
 		coordinate-system|x86 = coordinate-system|x86
 		coordinate-system1|x64 = coordinate-system1|x64
@@ -33,6 +35,10 @@ Global
 		triangles|x86 = triangles|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.camera|x64.ActiveCfg = camera|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.camera|x64.Build.0 = camera|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.camera|x86.ActiveCfg = camera|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.camera|x86.Build.0 = camera|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system|x64.ActiveCfg = coordinate-system|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system|x64.Build.0 = coordinate-system|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.coordinate-system|x86.ActiveCfg = coordinate-system|Win32
