@@ -19,6 +19,7 @@ public:
 		type = texType;		// assigns the type of the texture to the texture object
 		slot = slotType;	// assigns the slot type of the texture
 
+		// TODO: Add constructor param to set whether flip the image vertically or not
 		// stbi_set_flip_vertically_on_load(true);
 
 		// generate an OpenGL texture object
