@@ -426,68 +426,67 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='coordinate-system|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='coordinate-system1|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='coordinate-system2|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='camera|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='camera1|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='transformations1|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='transformations|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='textures1|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='textures|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='shaders1|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug shaders|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug triangles|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\igor3\dev\learn-opengl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\igor3\dev\learn-opengl\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
