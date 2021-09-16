@@ -172,6 +172,7 @@ int main()
 		*/
 		glm::mat4 viewMatrix;
 		viewMatrix = camera.getViewMatrix();
+		// viewMatrix = camera.getViewMatrixCustomCalculation(); // example on how to calculate the view matrix manually
 		shader.setMat4("view", viewMatrix);
 
 		glm::mat4 projectionMatrix = glm::mat4(1.0f);
