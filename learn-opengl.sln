@@ -21,6 +21,8 @@ Global
 		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
+		review1|x64 = review1|x64
+		review1|x86 = review1|x86
 		shaders|x64 = shaders|x64
 		shaders|x86 = shaders|x86
 		shaders1|x64 = shaders1|x64
@@ -65,6 +67,10 @@ Global
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Release|x64.Build.0 = Release|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Release|x86.ActiveCfg = Release|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Release|x86.Build.0 = Release|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.review1|x64.ActiveCfg = review1|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.review1|x64.Build.0 = review1|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.review1|x86.ActiveCfg = review1|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.review1|x86.Build.0 = review1|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.shaders|x64.ActiveCfg = debug shaders|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.shaders|x64.Build.0 = debug shaders|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.shaders|x86.ActiveCfg = debug shaders|Win32
