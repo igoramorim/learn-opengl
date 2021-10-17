@@ -31,6 +31,9 @@ float lastY = SCREEN_HEIGHT / 2.0f;
 float deltaTime = 0.0f; // time between current frame and last frame
 float lastFrame = 0.0f;
 
+// light / lamp
+glm::vec3 lampPos(1.2f, 1.0f, 2.0f);
+
 int main()
 {
 	glfwInit();
@@ -69,52 +72,52 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 
 	// build and compile our shader program
-	Shader lampShader("shaders/light1.vs", "shaders/lamp.fs");
 	Shader cubeShader("shaders/light1.vs", "shaders/cube-with-light.fs");
+	Shader lampShader("shaders/light1.vs", "shaders/lamp.fs");
 
 	float cubeVertices[] = {
-		// positions
-		-0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f,  0.5f, -0.5f,
-		 0.5f,  0.5f, -0.5f,
-		-0.5f,  0.5f, -0.5f,
-		-0.5f, -0.5f, -0.5f,
+		 // positions         // normals
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-		-0.5f, -0.5f,  0.5f,
-		 0.5f, -0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f,  0.5f,
-		-0.5f, -0.5f,  0.5f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
 
-		-0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f, -0.5f,
-		-0.5f, -0.5f, -0.5f,
-		-0.5f, -0.5f, -0.5f,
-		-0.5f, -0.5f,  0.5f,
-		-0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-		 0.5f,  0.5f,  0.5f,
-		 0.5f,  0.5f, -0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-		-0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f, -0.5f,
-		 0.5f, -0.5f,  0.5f,
-		 0.5f, -0.5f,  0.5f,
-		-0.5f, -0.5f,  0.5f,
-		-0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
-		-0.5f,  0.5f, -0.5f,
-		 0.5f,  0.5f, -0.5f,
-		 0.5f,  0.5f,  0.5f,
-		 0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f,  0.5f,
-		-0.5f,  0.5f, -0.5f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 	};
 
 	float lampVertices[] = {
@@ -146,13 +149,16 @@ int main()
 
 	VertexArray cubeVAO;
 	VertexBuffer cubeVBO(cubeVertices, sizeof(cubeVertices));
-	VertexBufferLayout layout;
-	layout.Push<float>(3); // position - layout 0
-	cubeVAO.AddBuffer(cubeVBO, layout);
+	VertexBufferLayout cubeLayout;
+	cubeLayout.Push<float>(3); // position - layout 0
+	cubeLayout.Push<float>(3); // normals  - layout 1
+	cubeVAO.AddBuffer(cubeVBO, cubeLayout);
 
 	VertexArray lampVAO;
 	VertexBuffer lampVBO(lampVertices, sizeof(lampVertices));
-	lampVAO.AddBuffer(lampVBO, layout);
+	VertexBufferLayout lampLayout;
+	lampLayout.Push<float>(3); // position - layout 0
+	lampVAO.AddBuffer(lampVBO, lampLayout);
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))
@@ -169,17 +175,19 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		cubeShader.use();
-		cubeShader.setVec3("u_objectColor", 1.0f, 0.5f, 0.31f);
-		cubeShader.setVec3("u_lampColor", 1.0f, 1.0f, 1.0f);
+		cubeShader.setVec3("uObjectColor", 1.0f, 0.5f, 0.31f);
+		cubeShader.setVec3("uLampColor", 1.0f, 1.0f, 1.0f);
+		cubeShader.setVec3("uLampPos", lampPos);
+		cubeShader.setVec3("uViewPos", camera.Position);
 
 		glm::mat4 projectionMatrix = glm::perspective(glm::radians(camera.Fov), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 viewMatrix = camera.getViewMatrix();
-		cubeShader.setMat4("projection", projectionMatrix);
-		cubeShader.setMat4("view", viewMatrix);
+		cubeShader.setMat4("uProjection", projectionMatrix);
+		cubeShader.setMat4("uView", viewMatrix);
 
 		glm::mat4 modelMatrix = glm::mat4(1.0f);
 		modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
-		cubeShader.setMat4("model", modelMatrix);
+		cubeShader.setMat4("uModel", modelMatrix);
 
 		// render the cube
 		cubeVAO.Bind();
@@ -187,11 +195,12 @@ int main()
 
 		// now render the lamp
 		lampShader.use();
-		lampShader.setMat4("projection", projectionMatrix);
-		lampShader.setMat4("view", viewMatrix);
-		modelMatrix = glm::translate(modelMatrix, glm::vec3(1.2f, 1.0f, 2.0f));
-		modelMatrix = glm::scale(modelMatrix, glm::vec3(0.2f));
-		lampShader.setMat4("model", modelMatrix);
+		lampShader.setMat4("uProjection", projectionMatrix);
+		lampShader.setMat4("uView", viewMatrix);
+		modelMatrix = glm::mat4(1.0f);
+		modelMatrix = glm::translate(modelMatrix, lampPos);
+		modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5f));
+		lampShader.setMat4("uModel", modelMatrix);
 		lampVAO.Bind();
 		glDrawArrays(GL_TRIANGLES, 0, 18);
 
