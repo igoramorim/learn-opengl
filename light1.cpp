@@ -36,6 +36,10 @@ float lastFrame = 0.0f;
 
 // light / lamp
 glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
+glm::vec3 lightPos = glm::vec3(1.0f, 1.0f, 2.0f);
+float ambientStrength = 0.1f;
+float specularStrength = 0.5f;
+float specularShininess = 32.0f;
 
 int main()
 {
@@ -63,7 +67,7 @@ int main()
 	glfwSetCursorPos(window, lastX, lastY);
 
 	// Capture the mouse cursor
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // GLFW_CURSOR_NORMAL - GLFW_CURSOR_DISABLED
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL); // GLFW_CURSOR_NORMAL - GLFW_CURSOR_DISABLED
 
 	// Glad load all OpenGL function pointers
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -189,13 +193,16 @@ int main()
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		glm::vec3 lightPos = glm::vec3(2.0f * sin(time), sin(3.0f * time), 2.0f * cos(time));
+		lightPos = glm::vec3(2.0f * sin(time), 0.0f, 1.0f * cos(time));
 
 		cubeShader.use();
 		cubeShader.setVec3("uObjectColor", objectColor);
 		cubeShader.setVec3("uLightColor", lightColor);
 		cubeShader.setVec3("uLightPos", lightPos);
 		cubeShader.setVec3("uViewPos", camera.Position);
+		cubeShader.setFloat("uAmbientStrength", ambientStrength);
+		cubeShader.setFloat("uSpecularStrength", specularStrength);
+		cubeShader.setFloat("uSpecularShininess", specularShininess);
 
 		glm::mat4 projectionMatrix = glm::perspective(glm::radians(camera.Fov), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 viewMatrix = camera.getViewMatrix();
@@ -214,6 +221,7 @@ int main()
 		lampShader.use();
 		lampShader.setMat4("uProjection", projectionMatrix);
 		lampShader.setMat4("uView", viewMatrix);
+		lampShader.setVec3("uLightColor", lightColor);
 		modelMatrix = glm::mat4(1.0f);
 		modelMatrix = glm::translate(modelMatrix, lightPos);
 		modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5f));
@@ -224,6 +232,9 @@ int main()
 		{
 			ImGui::Begin("Debug");
 			ImGui::SliderFloat3("Light Pos", &lightPos.x, -5.0f, 5.0f);
+			ImGui::SliderFloat("Ambient Strength", &ambientStrength, 0.0f, 1.0f);
+			ImGui::SliderFloat("Specular Strength", &specularStrength, 0.0f, 1.0f);
+			ImGui::SliderFloat("Specular Shininess", &specularShininess, 0.0f, 256.0f);
 			ImGui::ColorEdit3("Light Color", (float*)&lightColor);
 			ImGui::ColorEdit3("Cube Color", (float*)&objectColor);
 			
