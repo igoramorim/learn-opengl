@@ -1,11 +1,14 @@
+#include <iostream>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "stb_image.h"
-
-#include <iostream>
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_glfw.h>
+#include <imgui/imgui_impl_opengl3.h>
 
 #include "VertexBuffer.h";
 #include "VertexArray.h";
@@ -32,7 +35,7 @@ float deltaTime = 0.0f; // time between current frame and last frame
 float lastFrame = 0.0f;
 
 // light / lamp
-glm::vec3 lampPos(1.2f, 1.0f, 2.0f);
+glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
 int main()
 {
@@ -60,7 +63,7 @@ int main()
 	glfwSetCursorPos(window, lastX, lastY);
 
 	// Capture the mouse cursor
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED); // GLFW_CURSOR_NORMAL - GLFW_CURSOR_DISABLED
 
 	// Glad load all OpenGL function pointers
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -74,6 +77,12 @@ int main()
 	// build and compile our shader program
 	Shader cubeShader("shaders/light1.vs", "shaders/cube-with-light.fs");
 	Shader lampShader("shaders/light1.vs", "shaders/lamp.fs");
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
 
 	float cubeVertices[] = {
 		 // positions         // normals
@@ -160,6 +169,8 @@ int main()
 	lampLayout.Push<float>(3); // position - layout 0
 	lampVAO.AddBuffer(lampVBO, lampLayout);
 
+	glm::vec3 objectColor = glm::vec3(1.0f, 0.5f, 0.31f);
+
 	// Render loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -174,10 +185,16 @@ int main()
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
+		glm::vec3 lightPos = glm::vec3(2.0f * sin(time), sin(3.0f * time), 2.0f * cos(time));
+
 		cubeShader.use();
-		cubeShader.setVec3("uObjectColor", 1.0f, 0.5f, 0.31f);
-		cubeShader.setVec3("uLampColor", 1.0f, 1.0f, 1.0f);
-		cubeShader.setVec3("uLampPos", lampPos);
+		cubeShader.setVec3("uObjectColor", objectColor);
+		cubeShader.setVec3("uLightColor", lightColor);
+		cubeShader.setVec3("uLightPos", lightPos);
 		cubeShader.setVec3("uViewPos", camera.Position);
 
 		glm::mat4 projectionMatrix = glm::perspective(glm::radians(camera.Fov), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
@@ -198,11 +215,24 @@ int main()
 		lampShader.setMat4("uProjection", projectionMatrix);
 		lampShader.setMat4("uView", viewMatrix);
 		modelMatrix = glm::mat4(1.0f);
-		modelMatrix = glm::translate(modelMatrix, lampPos);
+		modelMatrix = glm::translate(modelMatrix, lightPos);
 		modelMatrix = glm::scale(modelMatrix, glm::vec3(0.5f));
 		lampShader.setMat4("uModel", modelMatrix);
 		lampVAO.Bind();
 		glDrawArrays(GL_TRIANGLES, 0, 18);
+
+		{
+			ImGui::Begin("Debug");
+			ImGui::SliderFloat3("Light Pos", &lightPos.x, -5.0f, 5.0f);
+			ImGui::ColorEdit3("Light Color", (float*)&lightColor);
+			ImGui::ColorEdit3("Cube Color", (float*)&objectColor);
+			
+			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+			ImGui::End();
+		}
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(window); // Swap the front buffer and the back buffer
 		glfwPollEvents(); // Checks if any events are triggered (like keyboard)
@@ -213,6 +243,10 @@ int main()
 	cubeVBO.Delete();
 	lampVAO.Delete();
 	lampVBO.Delete();
+
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 
 	glfwTerminate();
 	return 0;

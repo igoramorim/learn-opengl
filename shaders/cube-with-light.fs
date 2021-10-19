@@ -6,24 +6,24 @@ in vec3 Normal;
 in vec3 FragPos;
 
 uniform vec3 uObjectColor;
-uniform vec3 uLampColor;
-uniform vec3 uLampPos;
+uniform vec3 uLightColor;
+uniform vec3 uLightPos;
 uniform vec3 uViewPos;
 
 void main()
 {
 	// ambiente light
 	float ambientStrength = 0.1;
-	vec3 ambient = ambientStrength * uLampColor;
+	vec3 ambient = ambientStrength * uLightColor;
 
 	// diffuse
 	vec3 norm = normalize(Normal); // normalize to make sure the it is a unit vector
-	vec3 lightDir = normalize(uLampPos - FragPos);
+	vec3 lightDir = normalize(uLightPos - FragPos);
 	// Angle between the Normal and the LightDir
 	// The lower the angle the more the impact of the light will have on the surface
 	// Max used to keep the value >= 0
 	float diff = max(dot(norm, lightDir), 0.0);
-	vec3 diffuse = diff * uLampColor;
+	vec3 diffuse = diff * uLightColor;
 
 	// specular
 	float specularStrength = 0.5;
@@ -33,7 +33,7 @@ void main()
 	(this depends on the order of subtraction earlier on when we calculated the lightDir vector) */
 	vec3 reflectDir = reflect(-lightDir, norm);
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32); // pow(x, y) where y is the shininess
-	vec3 specular = specularStrength * spec * uLampColor;
+	vec3 specular = specularStrength * spec * uLightColor;
 
 	vec3 result = (ambient + diffuse + specular) * uObjectColor;
 	FragColor = vec4(result, 1.0);
