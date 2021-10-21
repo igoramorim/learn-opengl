@@ -21,6 +21,8 @@ Global
 		Debug|x86 = Debug|x86
 		light1|x64 = light1|x64
 		light1|x86 = light1|x86
+		materials|x64 = materials|x64
+		materials|x86 = materials|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 		review1|x64 = review1|x64
@@ -69,6 +71,10 @@ Global
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.light1|x64.Build.0 = light1|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.light1|x86.ActiveCfg = light1|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.light1|x86.Build.0 = light1|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.materials|x64.ActiveCfg = materials|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.materials|x64.Build.0 = materials|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.materials|x86.ActiveCfg = materials|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.materials|x86.Build.0 = materials|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Release|x64.ActiveCfg = Release|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Release|x64.Build.0 = Release|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.Release|x86.ActiveCfg = Release|Win32
