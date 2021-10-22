@@ -21,6 +21,8 @@ Global
 		Debug|x86 = Debug|x86
 		light1|x64 = light1|x64
 		light1|x86 = light1|x86
+		lighting-maps|x64 = lighting-maps|x64
+		lighting-maps|x86 = lighting-maps|x86
 		materials|x64 = materials|x64
 		materials|x86 = materials|x86
 		Release|x64 = Release|x64
@@ -71,6 +73,10 @@ Global
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.light1|x64.Build.0 = light1|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.light1|x86.ActiveCfg = light1|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.light1|x86.Build.0 = light1|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.lighting-maps|x64.ActiveCfg = lighting-maps|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.lighting-maps|x64.Build.0 = lighting-maps|x64
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.lighting-maps|x86.ActiveCfg = lighting-maps|Win32
+		{4915BB62-A921-4302-94BD-2EE4396A07BA}.lighting-maps|x86.Build.0 = lighting-maps|Win32
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.materials|x64.ActiveCfg = materials|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.materials|x64.Build.0 = materials|x64
 		{4915BB62-A921-4302-94BD-2EE4396A07BA}.materials|x86.ActiveCfg = materials|Win32

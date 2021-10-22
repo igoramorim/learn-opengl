@@ -14,6 +14,7 @@ public:
 	GLenum type;
 	GLenum slot;
 
+	// TODO: remove sourceFormat and destFormat from constructor. We can retrieve the channels from with stbi_load() and GL_RED(1) or GL_RGB(3) or GL_RGBA(4)
 	Texture(const char* imagePath, GLenum texType, GLenum slotType, GLenum sourceFormat, GLenum destFormat, GLenum pixelType)
 	{
 		type = texType;		// assigns the type of the texture to the texture object
@@ -45,7 +46,15 @@ public:
 
 		if (imageData)
 		{
-			glTexImage2D(GL_TEXTURE_2D,	// specifies the texture target that was bind with glBindTexture(GL_TEXTURE_2D, ...) previously
+			/*GLenum format;
+			if (nrChannels == 1)
+				format = GL_RED;
+			else if (nrChannels == 3)
+				format = GL_RGB;
+			else if (nrChannels == 4)
+				format = GL_RGBA;*/
+
+			glTexImage2D(texType,		// specifies the texture target that was bind with glBindTexture(GL_TEXTURE_2D, ...) previously
 				0,						// specifies the mipmap level if you want to set manually. 0 is the base level
 				destFormat,				// the format we want OpenGL to store our texture
 				widthImg,				// width of the the texture
@@ -65,7 +74,7 @@ public:
 		stbi_image_free(imageData); // free image memory
 
 		// unbinds the OpenGL Texture object so that it can't accidentally be modified
-		glBindTexture(texType, 0);
+		unbind();
 	}
 
 	void texUnit(Shader& shader, const char* uniform, GLuint unit)
