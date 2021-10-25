@@ -84,6 +84,7 @@ int main()
 
 	Texture diffuseMapTex("textures/container2.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE);
 	Texture specularMapTex("textures/container2_specular.png", GL_TEXTURE_2D, GL_TEXTURE1, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture emissionMapTex("textures/container2_emission.png", GL_TEXTURE_2D, GL_TEXTURE2, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE);
 		
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -179,6 +180,7 @@ int main()
 
 	diffuseMapTex.texUnit(cubeShader, "uMaterial.diffuse", 0);
 	specularMapTex.texUnit(cubeShader, "uMaterial.specular", 1);
+	emissionMapTex.texUnit(cubeShader, "uMaterial.emission", 2);
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))
@@ -229,10 +231,14 @@ int main()
 
 		// Uniform material properties
 		cubeShader.setFloat("uMaterial.shininess", 64.0f);
+
+		// Other stuff
+		cubeShader.setFloat("uTime", time);
 		
 		// Activate and bind lighting maps
 		diffuseMapTex.activeAndBind();
 		specularMapTex.activeAndBind();
+		emissionMapTex.activeAndBind();
 		
 		// render the cube
 		cubeVAO.Bind();

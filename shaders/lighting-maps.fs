@@ -5,6 +5,7 @@
 struct Material {
 	sampler2D diffuse;
 	sampler2D specular;
+	sampler2D emission;
 	float     shininess;
 };
 
@@ -24,11 +25,12 @@ in vec3 FragPos;
 uniform Material uMaterial;
 uniform Light uLight;
 uniform vec3 uViewPos;
+uniform float uTime;
 
 void main()
 {
 	// ambient light
-	vec3 ambient = uLight.ambient * vec3(texture(uMaterial.diffuse, TexCoords));
+	vec3 ambient = uLight.ambient * texture(uMaterial.diffuse, TexCoords).rgb;
 
 	// diffuse
 	vec3 norm = normalize(Normal); // normalize to make sure the it is a unit vector
@@ -37,7 +39,7 @@ void main()
 	// The lower the angle the more the impact of the light will have on the surface
 	// Max used to keep the value >= 0
 	float diff = max(dot(norm, lightDir), 0.0);
-	vec3 diffuse = uLight.diffuse * diff * vec3(texture(uMaterial.diffuse, TexCoords));
+	vec3 diffuse = uLight.diffuse * diff * texture(uMaterial.diffuse, TexCoords).rgb;
 
 	// specular
 	vec3 viewDir = normalize(uViewPos - FragPos);
@@ -46,8 +48,12 @@ void main()
 	(this depends on the order of subtraction earlier on when we calculated the lightDir vector) */
 	vec3 reflectDir = reflect(-lightDir, norm);
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), uMaterial.shininess); // pow(x, y) where y (default 32) is the shininess. Keep it 2 4 8 16 31 64 128 256 ...
-	vec3 specular = uLight.specular * spec * vec3(texture(uMaterial.specular, TexCoords));
+	vec3 specular = uLight.specular * spec * texture(uMaterial.specular, TexCoords).rgb;
 
-	vec3 result = ambient + diffuse + specular;
+	// emission
+	vec3 emission = texture(uMaterial.emission, TexCoords).rgb;
+	emission *= vec3(sin(uTime * 2.0), sin(uTime * 0.7), sin(uTime * 1.3));
+
+	vec3 result = ambient + diffuse + specular + emission;
 	FragColor = vec4(result, 1.0);
 };
