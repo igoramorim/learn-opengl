@@ -5,13 +5,13 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "stb_image.h"
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_glfw.h>
 #include <imgui/imgui_impl_opengl3.h>
 
 #include "camera.h"
 #include "demos/DemoClearColor.h"
+#include "demos/DemoTriangles.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -19,12 +19,12 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 // settings
-const unsigned int SCREEN_WIDTH = 800;
+const unsigned int SCREEN_WIDTH  = 800;
 const unsigned int SCREEN_HEIGHT = 600;
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
-float lastX = SCREEN_WIDTH / 2.0f;
+float lastX = SCREEN_WIDTH  / 2.0f;
 float lastY = SCREEN_HEIGHT / 2.0f;
 
 // timing
@@ -81,6 +81,7 @@ int main()
 	// TODO: Read some command line argument so we can jump right to a selected demo
 
 	menu->RegisterDemo<demo::DemoClearColor>("Clear Color");
+	menu->RegisterDemo<demo::DemoTriangles>("Triangles");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))
