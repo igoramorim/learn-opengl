@@ -16,6 +16,9 @@ namespace demo {
 		virtual void OnUpdate(float deltaTime) {}
 		virtual void OnRender() {}
 		virtual void OnImGuiRender() {}
+
+	protected:
+		float m_Time;
 	};
 
 	class DemoMenu : public Demo

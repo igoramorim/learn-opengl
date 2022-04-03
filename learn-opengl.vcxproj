@@ -1242,6 +1242,7 @@
     </ClCompile>
     <ClCompile Include="demos\Demo.cpp" />
     <ClCompile Include="demos\clear_color\DemoClearColor.cpp" />
+    <ClCompile Include="demos\shader_class\DemoShaderClass.cpp" />
     <ClCompile Include="demos\shader_uniform\DemoShaderUniform.cpp" />
     <ClCompile Include="demos\triangles\DemoTriangles.cpp" />
     <ClCompile Include="demo_lighting_maps.cpp">
@@ -1277,7 +1278,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='application|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug triangles|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="shaders.cpp">
+    <ClCompile Include="single_files\shaders.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug triangles|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug shaders|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -1298,7 +1299,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='shaders1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="shaders1.cpp">
+    <ClCompile Include="single_files\shaders1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='coordinate-system|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='coordinate-system1|x64'">true</ExcludedFromBuild>
@@ -1416,6 +1417,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="demos\Demo.h" />
     <ClInclude Include="demos\clear_color\DemoClearColor.h" />
+    <ClInclude Include="demos\shader_class\DemoShaderClass.h" />
     <ClInclude Include="demos\shader_uniform\DemoShaderUniform.h" />
     <ClInclude Include="demos\triangles\DemoTriangles.h" />
     <ClInclude Include="include\imgui\imconfig.h" />

@@ -1,23 +1,23 @@
 #pragma once
 
 #include "../Demo.h"
+#include "../../shader.h"
 
 namespace demo {
 
-	class DemoShaderUniform : public Demo
+	class DemoShaderClass : public Demo
 	{
 	public:
-		DemoShaderUniform();
-		~DemoShaderUniform();
+		DemoShaderClass();
+		~DemoShaderClass();
 
 		void OnUpdate(float deltaTime) override;
 		void OnRender() override;
 		void OnImGuiRender() override;
 
 	private:
-		unsigned int m_ShaderProgram;
+		Shader m_Shader;
 		unsigned int m_VBO;
 		unsigned int m_VAO;
 	};
-
 }

@@ -21,10 +21,10 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shaders.cpp">
+    <ClCompile Include="single_files\shaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shaders1.cpp">
+    <ClCompile Include="single_files\shaders1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="textures.cpp">
@@ -105,6 +105,9 @@
     <ClCompile Include="demos\shader_uniform\DemoShaderUniform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="demos\shader_class\DemoShaderClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -168,6 +171,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="demos\shader_uniform\DemoShaderUniform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\shader_class\DemoShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

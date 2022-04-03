@@ -13,6 +13,7 @@
 #include "demos/clear_color/DemoClearColor.h"
 #include "demos/triangles/DemoTriangles.h"
 #include "demos/shader_uniform/DemoShaderUniform.h"
+#include "demos/shader_class/DemoShaderClass.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -84,6 +85,7 @@ int main()
 	menu->RegisterDemo<demo::DemoClearColor>("Clear Color");
 	menu->RegisterDemo<demo::DemoTriangles>("Triangles");
 	menu->RegisterDemo<demo::DemoShaderUniform>("Shader Uniform");
+	menu->RegisterDemo<demo::DemoShaderClass>("Shader Class");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))

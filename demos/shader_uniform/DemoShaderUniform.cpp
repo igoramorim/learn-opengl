@@ -6,7 +6,7 @@
 
 namespace demo {
 
-	DemoShaderUniform::DemoShaderUniform() : m_time { 0.0f }
+	DemoShaderUniform::DemoShaderUniform()
 	{
 		const char* vertexShaderSource = "#version 330 core\n"
 			"layout (location = 0) in vec3 aPos;\n"
@@ -74,15 +74,15 @@ namespace demo {
 			0.0f,  0.5f, 0.0f   // top
 		};
 
-		unsigned int VBO; // Vertex Buffer Object. Used to store the vertices in the GPU's memory
-		unsigned int VAO; // Vertex Array Object. Used to make it easy to switch between vertex buffers / vertex attributes
+		// Vertex Array Object. Used to make it easy to switch between vertex buffers / vertex attributes
+		glGenVertexArrays(1, &m_VAO); // Generate vertex array ID
 
-		glGenVertexArrays(1, &VAO); // Generate vertex array ID
-		glGenBuffers(1, &VBO); // Generate vertex buffer ID
+		// Vertex Buffer Object. Used to store the vertices in the GPU's memory
+		glGenBuffers(1, &m_VBO); // Generate vertex buffer ID
 
 		// Setup first triangle
-		glBindVertexArray(VAO); // Bind the vertex array before the vertex buffer(s)
-		glBindBuffer(GL_ARRAY_BUFFER, VBO); // Vertex objects has buffer type GL_ARRAY_BUFFER
+		glBindVertexArray(m_VAO); // Bind the vertex array before the vertex buffer(s)
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBO); // Vertex objects has buffer type GL_ARRAY_BUFFER
 		// Copy user data (vertices) into the currently bound buffer (VBO wich was binded to GL_ARRAY_BUFFER)
 		// Now we have vertex data stored in the GPU memory managed by a vertex buffer object VBO
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -100,12 +100,15 @@ namespace demo {
 
 	DemoShaderUniform::~DemoShaderUniform()
 	{
-
+		// De-allocate all resources once they were already used
+		glDeleteVertexArrays(1, &m_VAO);
+		glDeleteBuffers(1, &m_VBO);
+		glDeleteProgram(m_ShaderProgram);
 	}
 
 	void DemoShaderUniform::OnUpdate(float deltaTime)
 	{
-		m_time = deltaTime;
+		m_Time = deltaTime;
 	}
 
 	void DemoShaderUniform::OnRender()
@@ -116,7 +119,7 @@ namespace demo {
 		glUseProgram(m_ShaderProgram); // Set what shader program the render calls will use
 
 		int vertexLocation = glGetUniformLocation(m_ShaderProgram, "ourColor");
-		glUniform4f(vertexLocation, 0.0f, sin(m_time) / 2.0f + 0.5f, 0.0f, 1.0f); // We pass data from CPU to GPU via uniforms
+		glUniform4f(vertexLocation, 0.0f, sin(m_Time) / 2.0f + 0.5f, 0.0f, 1.0f); // We pass data from CPU to GPU via uniforms
 
 		glDrawArrays(
 			GL_TRIANGLES, // Mode we want to draw

@@ -18,6 +18,7 @@ namespace demo {
 		unsigned int m_ShaderProgram;
 		unsigned int m_ShaderProgram2;
 		unsigned int m_VAOs[2];
+		unsigned int m_VBOs[2];
 	};
 
 }

@@ -113,15 +113,13 @@ namespace demo {
 			0.45f, 0.5f, 0.0f   // top 
 		};
 
-		unsigned int VBOs[2]; // Vertex Buffer Object. Used to store the vertices in the GPU's memory
-
 		// Vertex Array Object. Used to make it easy to switch between vertex buffers / vertex attributes
 		glGenVertexArrays(2, m_VAOs); // Generate vertex array ID
-		glGenBuffers(2, VBOs); // Generate vertex buffer ID
+		glGenBuffers(2, m_VBOs); // Generate vertex buffer ID
 
 		// Setup first triangle
 		glBindVertexArray(m_VAOs[0]); // Bind the vertex array before the vertex buffer(s)
-		glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]); // Vertex objects has buffer type GL_ARRAY_BUFFER
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBOs[0]); // Vertex objects has buffer type GL_ARRAY_BUFFER
 		// Copy user data (vertices) into the currently bound buffer (VBO wich was binded to GL_ARRAY_BUFFER)
 		// Now we have vertex data stored in the GPU memory managed by a vertex buffer object VBO
 		glBufferData(GL_ARRAY_BUFFER, sizeof(firstTriangle), firstTriangle, GL_STATIC_DRAW);
@@ -138,7 +136,7 @@ namespace demo {
 
 		// Setup second triangle
 		glBindVertexArray(m_VAOs[1]);
-		glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBOs[1]);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle), secondTriangle, GL_STATIC_DRAW);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 		glEnableVertexAttribArray(0);
@@ -146,7 +144,11 @@ namespace demo {
 
 	DemoTriangles::~DemoTriangles()
 	{
-
+		// De-allocate all resources once they were already used
+		glDeleteVertexArrays(2, m_VAOs);
+		glDeleteBuffers(2, m_VBOs);
+		glDeleteProgram(m_ShaderProgram);
+		glDeleteProgram(m_ShaderProgram2);
 	}
 
 	void DemoTriangles::OnUpdate(float deltaTime)
