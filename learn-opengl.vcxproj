@@ -1242,6 +1242,7 @@
     </ClCompile>
     <ClCompile Include="demos\Demo.cpp" />
     <ClCompile Include="demos\clear_color\DemoClearColor.cpp" />
+    <ClCompile Include="demos\shader_uniform\DemoShaderUniform.cpp" />
     <ClCompile Include="demos\triangles\DemoTriangles.cpp" />
     <ClCompile Include="demo_lighting_maps.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='application|x64'">true</ExcludedFromBuild>
@@ -1415,6 +1416,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="demos\Demo.h" />
     <ClInclude Include="demos\clear_color\DemoClearColor.h" />
+    <ClInclude Include="demos\shader_uniform\DemoShaderUniform.h" />
     <ClInclude Include="demos\triangles\DemoTriangles.h" />
     <ClInclude Include="include\imgui\imconfig.h" />
     <ClInclude Include="include\imgui\imgui.h" />

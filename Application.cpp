@@ -12,6 +12,7 @@
 #include "camera.h"
 #include "demos/clear_color/DemoClearColor.h"
 #include "demos/triangles/DemoTriangles.h"
+#include "demos/shader_uniform/DemoShaderUniform.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -82,6 +83,7 @@ int main()
 
 	menu->RegisterDemo<demo::DemoClearColor>("Clear Color");
 	menu->RegisterDemo<demo::DemoTriangles>("Triangles");
+	menu->RegisterDemo<demo::DemoShaderUniform>("Shader Uniform");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))
@@ -105,7 +107,7 @@ int main()
 
 		if (currentDemo)
 		{
-			currentDemo->OnUpdate(0.0f);
+			currentDemo->OnUpdate(time);
 			currentDemo->OnRender();
 			if (currentDemo != menu && ImGui::Button("Back"))
 			{
