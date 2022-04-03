@@ -122,7 +122,11 @@ int main()
 		ImGui::Spacing();
 		ImGui::Separator();
 		ImGui::Spacing();
+		ImGui::Text("General settings");
+		ImGui::Spacing();
 		ImGui::SliderFloat3("Camera Pos", &camera.Position.x, -5.0f, 5.0f);
+		ImGui::Spacing();
+		ImGui::Separator();
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		ImGui::Text("ImGui %s", IMGUI_VERSION);
 		ImGui::End();
