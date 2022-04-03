@@ -93,13 +93,13 @@
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="demos\DemoClearColor.cpp">
+    <ClCompile Include="demos\clear_color\DemoClearColor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="demos\Demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="demos\DemoTriangles.cpp">
+    <ClCompile Include="demos\triangles\DemoTriangles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,10 +158,10 @@
     <ClInclude Include="demos\Demo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="demos\DemoClearColor.h">
+    <ClInclude Include="demos\clear_color\DemoClearColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="demos\DemoTriangles.h">
+    <ClInclude Include="demos\triangles\DemoTriangles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

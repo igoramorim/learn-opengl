@@ -10,8 +10,8 @@
 #include <imgui/imgui_impl_opengl3.h>
 
 #include "camera.h"
-#include "demos/DemoClearColor.h"
-#include "demos/DemoTriangles.h"
+#include "demos/clear_color/DemoClearColor.h"
+#include "demos/triangles/DemoTriangles.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
