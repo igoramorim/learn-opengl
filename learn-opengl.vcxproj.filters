@@ -27,7 +27,7 @@
     <ClCompile Include="single_files\shaders1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="textures.cpp">
+    <ClCompile Include="single_files\textures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stb_image.cpp">
@@ -108,6 +108,9 @@
     <ClCompile Include="demos\shader_class\DemoShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="demos\texture\DemoTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -174,6 +177,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="demos\shader_class\DemoShaderClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\texture\DemoTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

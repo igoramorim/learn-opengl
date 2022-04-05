@@ -14,6 +14,7 @@
 #include "demos/triangles/DemoTriangles.h"
 #include "demos/shader_uniform/DemoShaderUniform.h"
 #include "demos/shader_class/DemoShaderClass.h"
+#include "demos/texture/DemoTexture.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -80,12 +81,11 @@ int main()
 	demo::DemoMenu* menu = new demo::DemoMenu(currentDemo);
 	currentDemo = menu;
 
-	// TODO: Read some command line argument so we can jump right to a selected demo
-
 	menu->RegisterDemo<demo::DemoClearColor>("Clear Color");
 	menu->RegisterDemo<demo::DemoTriangles>("Triangles");
 	menu->RegisterDemo<demo::DemoShaderUniform>("Shader Uniform");
 	menu->RegisterDemo<demo::DemoShaderClass>("Shader Class");
+	menu->RegisterDemo<demo::DemoTexture>("Texture");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))
