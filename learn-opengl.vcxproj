@@ -1245,6 +1245,7 @@
     <ClCompile Include="demos\shader_class\DemoShaderClass.cpp" />
     <ClCompile Include="demos\shader_uniform\DemoShaderUniform.cpp" />
     <ClCompile Include="demos\texture\DemoTexture.cpp" />
+    <ClCompile Include="demos\texture_class\DemoTextureClass.cpp" />
     <ClCompile Include="demos\triangles\DemoTriangles.cpp" />
     <ClCompile Include="demo_lighting_maps.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='application|x64'">true</ExcludedFromBuild>
@@ -1339,7 +1340,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug shaders|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='shaders1|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="textures1.cpp">
+    <ClCompile Include="single_files\textures1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='transformations|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='transformations1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='coordinate-system|x64'">true</ExcludedFromBuild>
@@ -1421,6 +1422,7 @@
     <ClInclude Include="demos\shader_class\DemoShaderClass.h" />
     <ClInclude Include="demos\shader_uniform\DemoShaderUniform.h" />
     <ClInclude Include="demos\texture\DemoTexture.h" />
+    <ClInclude Include="demos\texture_class\DemoTextureClass.h" />
     <ClInclude Include="demos\triangles\DemoTriangles.h" />
     <ClInclude Include="include\imgui\imconfig.h" />
     <ClInclude Include="include\imgui\imgui.h" />
