@@ -11,6 +11,7 @@ namespace demo {
 	{
 	public:
 		Demo() {}
+		// De-allocate all resources once they were already used
 		virtual ~Demo() {}
 
 		virtual void OnUpdate(float deltaTime) {}

@@ -100,7 +100,6 @@ namespace demo {
 
 	DemoShaderUniform::~DemoShaderUniform()
 	{
-		// De-allocate all resources once they were already used
 		glDeleteVertexArrays(1, &m_VAO);
 		glDeleteBuffers(1, &m_VBO);
 		glDeleteProgram(m_ShaderProgram);

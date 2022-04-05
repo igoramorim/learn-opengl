@@ -144,7 +144,6 @@ namespace demo {
 
 	DemoTriangles::~DemoTriangles()
 	{
-		// De-allocate all resources once they were already used
 		glDeleteVertexArrays(2, m_VAOs);
 		glDeleteBuffers(2, m_VBOs);
 		glDeleteProgram(m_ShaderProgram);
