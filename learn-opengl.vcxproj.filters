@@ -36,7 +36,7 @@
     <ClCompile Include="single_files\textures1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="transformations.cpp">
+    <ClCompile Include="single_files\transformations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="transformations1.cpp">
@@ -114,6 +114,9 @@
     <ClCompile Include="demos\texture_class\DemoTextureClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="demos\transformations\DemoTransformations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -186,6 +189,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="demos\texture_class\DemoTextureClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\transformations\DemoTransformations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

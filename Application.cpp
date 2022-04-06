@@ -16,6 +16,7 @@
 #include "demos/shader_class/DemoShaderClass.h"
 #include "demos/texture/DemoTexture.h"
 #include "demos/texture_class/DemoTextureClass.h"
+#include "demos/transformations/DemoTransformations.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -88,6 +89,7 @@ int main()
 	menu->RegisterDemo<demo::DemoShaderClass>("Shader Class");
 	menu->RegisterDemo<demo::DemoTexture>("Texture");
 	menu->RegisterDemo<demo::DemoTextureClass>("Texture Class");
+	menu->RegisterDemo<demo::DemoTransformations>("Transformations");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))
