@@ -39,7 +39,7 @@
     <ClCompile Include="single_files\transformations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="transformations1.cpp">
+    <ClCompile Include="single_files\transformations1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="coordinate-system.cpp">
