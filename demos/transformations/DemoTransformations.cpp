@@ -76,6 +76,8 @@ namespace demo {
 		m_WoodTex.activeAndBind();
 		m_SmileTex.activeAndBind();
 
+		m_Shader.use();
+
 		/* Transformations
 		* ===================================================================================
 		* The matrix multiplication is applied in reverse (from bottom to top). So the order is:
@@ -90,23 +92,29 @@ namespace demo {
 		// 0 1 0 0
 		// 0 0 1 0
 		// 0 0 0 1
-		glm::mat4 trans = glm::mat4(1.0f);
 
-		trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));	// 3
-
-		// rotate 90 degrees around the z-axis (using a unit vector)
-		// glm expects the angles in radians, so glm::radians convert degrees to radians
-		trans = glm::rotate(trans, m_Time, glm::vec3(0.0f, 0.0f, 1.0f));	// 2
-
-		trans = glm::scale(trans, glm::vec3(0.5f, 0.5f, 0.5f));			// 1
-		// ===============================================================================
-
-		// render the triangle
-		m_Shader.use();
-		// set uniforms
-		m_Shader.setMat4("transform", trans);
-
+		/* Transformation 1
+		* ===================================================================================
+		*/
+		glm::mat4 transform = glm::mat4(1.0f); // identity matrix
+		transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+		transform = glm::rotate(transform, m_Time, glm::vec3(0.0f, 0.0f, 1.0f));
+		m_Shader.setMat4("transform", transform);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		// ==================================================================================
+
+		/* Transformation 2
+		* ===================================================================================
+		*/
+		transform = glm::mat4(1.0f); // reset to identity matrix
+		transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f)); // (3)
+		transform = glm::rotate(transform, m_Time, glm::vec3(0.0f, 0.0f, 1.0f)); // (2)
+		float s = sin(m_Time) * 0.5 + 0.5;
+		transform = glm::scale(transform, glm::vec3(s, s, 1.0f)); // (1)
+		m_Shader.setMat4("transform", transform);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		// ==================================================================================
+
 	}
 
 	void DemoTransformations::OnImGuiRender()
