@@ -9,6 +9,8 @@
 #include <imgui/imgui_impl_glfw.h>
 #include <imgui/imgui_impl_opengl3.h>
 
+#include "Constants.h"
+
 #include "camera.h"
 #include "demos/clear_color/DemoClearColor.h"
 #include "demos/triangles/DemoTriangles.h"
@@ -17,20 +19,17 @@
 #include "demos/texture/DemoTexture.h"
 #include "demos/texture_class/DemoTextureClass.h"
 #include "demos/transformations/DemoTransformations.h"
+#include "demos/coordinate_system_plane/DemoCoordinateSystemPlane.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
-// settings
-const unsigned int SCREEN_WIDTH  = 800;
-const unsigned int SCREEN_HEIGHT = 600;
-
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
-float lastX = SCREEN_WIDTH  / 2.0f;
-float lastY = SCREEN_HEIGHT / 2.0f;
+float lastX = Constants::SCREEN_WIDTH / 2.0f;
+float lastY = Constants::SCREEN_HEIGHT / 2.0f;
 
 // timing
 float deltaTime = 0.0f; // time between current frame and last frame
@@ -47,7 +46,7 @@ int main()
 #endif
 
 	// Glfw window creation
-	GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "LearnOpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT, "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << '\n';
@@ -90,6 +89,7 @@ int main()
 	menu->RegisterDemo<demo::DemoTexture>("Texture");
 	menu->RegisterDemo<demo::DemoTextureClass>("Texture Class");
 	menu->RegisterDemo<demo::DemoTransformations>("Transformations");
+	menu->RegisterDemo<demo::DemoCoordinateSystemPlane>("Coordinate System: Plane");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))

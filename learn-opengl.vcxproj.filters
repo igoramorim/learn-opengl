@@ -42,7 +42,7 @@
     <ClCompile Include="single_files\transformations1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="coordinate-system.cpp">
+    <ClCompile Include="single_files\coordinate-system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="coordinate-system1.cpp">
@@ -115,6 +115,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="demos\transformations\DemoTransformations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demos\coordinate_system_plane\DemoCoordinateSystemPlane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -192,6 +195,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="demos\transformations\DemoTransformations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\coordinate_system_plane\DemoCoordinateSystemPlane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
