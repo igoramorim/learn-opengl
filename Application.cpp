@@ -20,6 +20,7 @@
 #include "demos/texture_class/DemoTextureClass.h"
 #include "demos/transformations/DemoTransformations.h"
 #include "demos/coordinate_system_plane/DemoCoordinateSystemPlane.h"
+#include "demos/coordinate_system_cube/DemoCoordinateSystemCube.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -70,8 +71,6 @@ int main()
 		return -1;
 	}
 
-	glEnable(GL_DEPTH_TEST);
-
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
@@ -90,6 +89,7 @@ int main()
 	menu->RegisterDemo<demo::DemoTextureClass>("Texture Class");
 	menu->RegisterDemo<demo::DemoTransformations>("Transformations");
 	menu->RegisterDemo<demo::DemoCoordinateSystemPlane>("Coordinate System: Plane");
+	menu->RegisterDemo<demo::DemoCoordinateSystemCube>("Coordinate System: Cube");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))

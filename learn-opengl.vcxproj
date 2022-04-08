@@ -1186,6 +1186,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='lighting-maps|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='application|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="demos\coordinate_system_cube\DemoCoordinateSystemCube.cpp" />
     <ClCompile Include="demos\coordinate_system_plane\DemoCoordinateSystemPlane.cpp" />
     <ClCompile Include="single_files\coordinate-system.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='coordinate-system1|x64'">true</ExcludedFromBuild>
@@ -1420,6 +1421,7 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="demos\coordinate_system_cube\DemoCoordinateSystemCube.h" />
     <ClInclude Include="demos\coordinate_system_plane\DemoCoordinateSystemPlane.h" />
     <ClInclude Include="demos\Demo.h" />
     <ClInclude Include="demos\clear_color\DemoClearColor.h" />

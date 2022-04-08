@@ -120,6 +120,9 @@
     <ClCompile Include="demos\coordinate_system_plane\DemoCoordinateSystemPlane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="demos\coordinate_system_cube\DemoCoordinateSystemCube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -201,6 +204,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\coordinate_system_cube\DemoCoordinateSystemCube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

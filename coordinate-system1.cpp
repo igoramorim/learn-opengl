@@ -59,7 +59,7 @@ int main()
 	}
 
 	// build and compile our shader program
-	Shader shader("shaders/coordinate-system1.vs", "shaders/coordinate-system1.fs");
+	Shader shader("shaders/coordinate-system.vs", "shaders/coordinate-system.fs");
 
 	// Vertex input data
 	float vertices[] = {
