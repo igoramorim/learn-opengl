@@ -21,6 +21,7 @@
 #include "demos/transformations/DemoTransformations.h"
 #include "demos/coordinate_system_plane/DemoCoordinateSystemPlane.h"
 #include "demos/coordinate_system_cube/DemoCoordinateSystemCube.h"
+#include "demos/camera_class/DemoCameraClass.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -29,8 +30,8 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
-float lastX = Constants::SCREEN_WIDTH / 2.0f;
-float lastY = Constants::SCREEN_HEIGHT / 2.0f;
+float lastX = Constants::LAST_X;
+float lastY = Constants::LAST_Y;
 
 // timing
 float deltaTime = 0.0f; // time between current frame and last frame
@@ -58,7 +59,7 @@ int main()
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	glfwSetCursorPosCallback(window, mouse_callback);
-	glfwSetScrollCallback(window, scroll_callback);
+	// glfwSetScrollCallback(window, scroll_callback);
 	glfwSetCursorPos(window, lastX, lastY);
 
 	// Capture the mouse cursor
@@ -90,17 +91,19 @@ int main()
 	menu->RegisterDemo<demo::DemoTransformations>("Transformations");
 	menu->RegisterDemo<demo::DemoCoordinateSystemPlane>("Coordinate System: Plane");
 	menu->RegisterDemo<demo::DemoCoordinateSystemCube>("Coordinate System: Cube");
+	menu->RegisterDemo<demo::DemoCameraClass>("Camera Class");
 
 	// Render loop
 	while (!glfwWindowShouldClose(window))
 	{
+
 		float time = glfwGetTime();
 		// per-frame time logic
 		float currentFrame = time;
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
-		processInput(window);
+		// processInput(window);
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -113,7 +116,8 @@ int main()
 
 		if (currentDemo)
 		{
-			currentDemo->OnUpdate(time);
+			currentDemo->ProcessInput(window);
+			currentDemo->OnUpdate(deltaTime);
 			currentDemo->OnRender();
 			if (currentDemo != menu && ImGui::Button("Back"))
 			{
@@ -160,7 +164,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-void processInput(GLFWwindow* window)
+/*void processInput(GLFWwindow* window)
 {
 	// close window
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -183,9 +187,9 @@ void processInput(GLFWwindow* window)
 		camera.processKeyboard(LEFT, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.processKeyboard(RIGHT, deltaTime);
-}
+}*/
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+/*void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	float xoffset = xpos - lastX;
 	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
@@ -199,4 +203,4 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	camera.processMouseScroll(yoffset);
-}
+}*/

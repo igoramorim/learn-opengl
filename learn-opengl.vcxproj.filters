@@ -45,16 +45,16 @@
     <ClCompile Include="single_files\coordinate-system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="coordinate-system1.cpp">
+    <ClCompile Include="single_files\coordinate-system1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="coordinate-system2.cpp">
+    <ClCompile Include="single_files\coordinate-system2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
+    <ClCompile Include="single_files\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camera1.cpp">
+    <ClCompile Include="single_files\camera1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="review1.cpp">
@@ -121,6 +121,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="demos\coordinate_system_cube\DemoCoordinateSystemCube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demos\camera_class\DemoCameraClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -207,6 +210,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="demos\coordinate_system_cube\DemoCoordinateSystemCube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\camera_class\DemoCameraClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

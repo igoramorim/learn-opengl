@@ -46,7 +46,7 @@ namespace demo {
 
 	void DemoShaderClass::OnUpdate(float deltaTime)
 	{
-		m_Time = deltaTime;
+		m_DeltaTime = deltaTime;
 	}
 
 	void DemoShaderClass::OnRender()
@@ -55,7 +55,7 @@ namespace demo {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		m_Shader.use();
-		m_Shader.setFloat("time", m_Time);
+		m_Shader.setFloat("time", glfwGetTime());
 
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 	}

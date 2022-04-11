@@ -107,7 +107,7 @@ namespace demo {
 
 	void DemoShaderUniform::OnUpdate(float deltaTime)
 	{
-		m_Time = deltaTime;
+		m_DeltaTime = deltaTime;
 	}
 
 	void DemoShaderUniform::OnRender()
@@ -118,7 +118,7 @@ namespace demo {
 		glUseProgram(m_ShaderProgram); // Set what shader program the render calls will use
 
 		int vertexLocation = glGetUniformLocation(m_ShaderProgram, "ourColor");
-		glUniform4f(vertexLocation, 0.0f, sin(m_Time) / 2.0f + 0.5f, 0.0f, 1.0f); // We pass data from CPU to GPU via uniforms
+		glUniform4f(vertexLocation, 0.0f, sin(glfwGetTime()) / 2.0f + 0.5f, 0.0f, 1.0f); // We pass data from CPU to GPU via uniforms
 
 		glDrawArrays(
 			GL_TRIANGLES, // Mode we want to draw

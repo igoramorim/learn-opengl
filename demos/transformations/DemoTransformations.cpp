@@ -65,7 +65,7 @@ namespace demo {
 
 	void DemoTransformations::OnUpdate(float deltaTime)
 	{
-		m_Time = deltaTime;
+		m_DeltaTime = deltaTime;
 	}
 
 	void DemoTransformations::OnRender()
@@ -77,6 +77,8 @@ namespace demo {
 		m_SmileTex.activeAndBind();
 
 		m_Shader.use();
+
+		float time = glfwGetTime();
 
 		/* Transformations
 		* ===================================================================================
@@ -98,7 +100,7 @@ namespace demo {
 		*/
 		glm::mat4 transform = glm::mat4(1.0f); // identity matrix
 		transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-		transform = glm::rotate(transform, m_Time, glm::vec3(0.0f, 0.0f, 1.0f));
+		transform = glm::rotate(transform, time, glm::vec3(0.0f, 0.0f, 1.0f));
 		m_Shader.setMat4("transform", transform);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		// ==================================================================================
@@ -108,8 +110,8 @@ namespace demo {
 		*/
 		transform = glm::mat4(1.0f); // reset to identity matrix
 		transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f)); // (3)
-		transform = glm::rotate(transform, m_Time, glm::vec3(0.0f, 0.0f, 1.0f)); // (2)
-		float s = sin(m_Time) * 0.5 + 0.5;
+		transform = glm::rotate(transform, time, glm::vec3(0.0f, 0.0f, 1.0f)); // (2)
+		float s = sin(time) * 0.5 + 0.5;
 		transform = glm::scale(transform, glm::vec3(s, s, 1.0f)); // (1)
 		m_Shader.setMat4("transform", transform);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

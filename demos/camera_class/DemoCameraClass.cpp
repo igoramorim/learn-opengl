@@ -1,4 +1,4 @@
-#include "DemoCoordinateSystemCube.h"
+#include "DemoCameraClass.h"
 #include "../../Constants.h"
 
 #include <glm/glm.hpp>
@@ -6,15 +6,24 @@
 #include <glm/gtc/type_ptr.hpp>
 
 namespace demo {
-
-	DemoCoordinateSystemCube::DemoCoordinateSystemCube() :
-		m_Shader{ "shaders/coordinate-system.vs", "shaders/coordinate-system.fs" },
+	
+	DemoCameraClass::DemoCameraClass() :
+		m_Shader{ "shaders/camera.vs", "shaders/camera.fs" },
 		m_WoodTex{ "textures/container.jpg", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE },
 		m_SmileTex{ "textures/awesomeface.png", GL_TEXTURE_2D, GL_TEXTURE1, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE },
-		m_ModelMatrix{ glm::mat4(1.0f) },
-		m_ViewMatrix{ glm::mat4(1.0f) },
-		m_ProjectionMatrix{ glm::mat4(1.0f) }
+		m_Camera{ glm::vec3(0.0f, 0.0f, 3.0f) },
+		m_CubePositions{
+			glm::vec3(0.0f,  0.0f,  0.0f),
+			glm::vec3(2.0f,  5.0f, -15.0f),
+			glm::vec3(-1.5f, -2.2f, -2.5f),
+			glm::vec3(-3.8f, -2.0f, -12.3f),
+			glm::vec3(2.4f, -0.4f, -3.5f)
+		}
 	{
+		BindGlfwFunctions();
+
+		glEnable(GL_DEPTH_TEST);
+
 		// Vertex input data
 		float vertices[] = {
 			// positions          // text coord
@@ -82,34 +91,22 @@ namespace demo {
 		m_SmileTex.texUnit(m_Shader, "texture2", 1);
 
 		m_Shader.use();
-
-		/*
-		* Enable Depth Test - OpenGL stores all depth information in the z-buffer (depth buffer)
-		* the depth is stored within each fragment. When the fragment want to output a color, OpenGL compares its depth value with the z-buffer
-		* if the current fragment is behind the other fragment it is discarded, otherwise overwritten
-		* GL_DEPTH_BUFFER_BIT is also needed in the glClear to make it work
-		*
-		* Comment the glEnable below and see that some faces of the cube are above others
-		* that happens because OpenGL does not do the depth test, and since OpenGL does not guarantee the order the triangles
-		* are rendered, some triangles are drawn on top of each other
-		*/
-		glEnable(GL_DEPTH_TEST);
 	}
 
-	DemoCoordinateSystemCube::~DemoCoordinateSystemCube()
+	DemoCameraClass::~DemoCameraClass()
 	{
 		glDeleteVertexArrays(1, &m_VAO);
 		glDeleteBuffers(1, &m_VBO);
-		m_WoodTex.Delete();
 		m_SmileTex.Delete();
+		m_WoodTex.Delete();
 	}
 
-	void DemoCoordinateSystemCube::OnUpdate(float deltaTime)
+	void DemoCameraClass::OnUpdate(float deltaTime)
 	{
 		m_DeltaTime = deltaTime;
 	}
 
-	void DemoCoordinateSystemCube::OnRender()
+	void DemoCameraClass::OnRender()
 	{
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -117,30 +114,78 @@ namespace demo {
 		m_WoodTex.activeAndBind();
 		m_SmileTex.activeAndBind();
 
-		float time = glfwGetTime();
-
 		/* Transformations to make it 3D
 		* ==========================================================================
 		*/
-		m_ModelMatrix = glm::mat4(1.0f);
-		m_ViewMatrix = glm::mat4(1.0f);
-		m_ProjectionMatrix = glm::mat4(1.0f);
+		glm::mat4 viewMatrix;
+		viewMatrix = m_Camera.getViewMatrix();
+		// viewMatrix = m_Camera.getViewMatrixCustomCalculation(); // example on how to calculate the view matrix manually
+		m_Shader.setMat4("view", viewMatrix);
 
-		m_ModelMatrix = glm::rotate(m_ModelMatrix, time * glm::radians(50.0f), glm::vec3(1.0f, 1.0f, 0.0f));
-		m_ViewMatrix = glm::translate(m_ViewMatrix, glm::vec3(0.0f, 0.0f, -3.0f));
-		m_ProjectionMatrix = glm::perspective(glm::radians(45.0f), (float)Constants::SCREEN_WIDTH / (float)Constants::SCREEN_HEIGHT, 0.1f, 100.0f);
+		glm::mat4 projectionMatrix = glm::mat4(1.0f);
+		projectionMatrix = glm::perspective(glm::radians(m_Camera.Fov), (float)Constants::SCREEN_WIDTH / (float)Constants::SCREEN_HEIGHT, 0.1f, 100.0f);
+		m_Shader.setMat4("projection", projectionMatrix);
 
-		m_Shader.setMat4("model", m_ModelMatrix);
-		m_Shader.setMat4("view", m_ViewMatrix);
-		m_Shader.setMat4("projection", m_ProjectionMatrix);
-		// =========================================================================
+		for (unsigned int i = 0; i < 5; i++)
+		{
+			glm::mat4 modelMatrix = glm::mat4(1.0f);
+			modelMatrix = glm::translate(modelMatrix, m_CubePositions[i]);
+			m_Shader.setMat4("model", modelMatrix);
 
-		glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices to make a cube
+			glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices to make a cube
+		}
 	}
 
-	void DemoCoordinateSystemCube::OnImGuiRender()
+	void DemoCameraClass::OnImGuiRender()
 	{
 
+	}
+
+	void DemoCameraClass::ProcessInput(GLFWwindow* window)
+	{
+		// close window
+		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			glfwSetWindowShouldClose(window, true);
+
+		// enable 'wireframe' mode
+		if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		// disable 'wireframe' mode
+		if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		// camera movement
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+			m_Camera.processKeyboard(FORWARD, m_DeltaTime);
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+			m_Camera.processKeyboard(BACKWARD, m_DeltaTime);
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+			m_Camera.processKeyboard(LEFT, m_DeltaTime);
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+			m_Camera.processKeyboard(RIGHT, m_DeltaTime);
+	}
+
+	void DemoCameraClass::BindGlfwFunctions(GLFWwindow* window)
+	{
+		glfwSetCursorPosCallback(window, mouse_callback);
+		glfwSetScrollCallback(window, scroll_callback);
+	}
+
+	void DemoCameraClass::mouse_callback(GLFWwindow* window, double xpos, double ypos)
+	{
+		float xoffset = xpos - m_LastX;
+		float yoffset = m_LastY - ypos; // reversed since y-coordinates go from bottom to top
+
+		m_LastX = xpos;
+		m_LastY = ypos;
+
+		m_Camera.processMouseMovement(xoffset, yoffset);
+	}
+
+	void DemoCameraClass::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+	{
+		m_Camera.processMouseScroll(yoffset);
 	}
 
 }

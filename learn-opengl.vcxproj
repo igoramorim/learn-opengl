@@ -1148,7 +1148,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug triangles|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='materials|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
+    <ClCompile Include="single_files\camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='camera1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='review1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='light1|x64'">true</ExcludedFromBuild>
@@ -1166,7 +1166,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='transformations1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug triangles|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="camera1.cpp">
+    <ClCompile Include="single_files\camera1.cpp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='camera|x64'">
       </DeploymentContent>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='camera|x64'">true</ExcludedFromBuild>
@@ -1186,6 +1186,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='lighting-maps|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='application|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="demos\camera_class\DemoCameraClass.cpp" />
     <ClCompile Include="demos\coordinate_system_cube\DemoCoordinateSystemCube.cpp" />
     <ClCompile Include="demos\coordinate_system_plane\DemoCoordinateSystemPlane.cpp" />
     <ClCompile Include="single_files\coordinate-system.cpp">
@@ -1206,7 +1207,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug shaders|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='shaders1|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="coordinate-system1.cpp">
+    <ClCompile Include="single_files\coordinate-system1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='coordinate-system|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='coordinate-system2|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='camera|x64'">true</ExcludedFromBuild>
@@ -1224,7 +1225,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug shaders|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='shaders1|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="coordinate-system2.cpp">
+    <ClCompile Include="single_files\coordinate-system2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='coordinate-system1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug triangles|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='transformations|x64'">true</ExcludedFromBuild>
@@ -1421,6 +1422,7 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="demos\camera_class\DemoCameraClass.h" />
     <ClInclude Include="demos\coordinate_system_cube\DemoCoordinateSystemCube.h" />
     <ClInclude Include="demos\coordinate_system_plane\DemoCoordinateSystemPlane.h" />
     <ClInclude Include="demos\Demo.h" />
