@@ -20,7 +20,7 @@ namespace demo {
 			glm::vec3(2.4f, -0.4f, -3.5f)
 		}
 	{
-		BindGlfwFunctions();
+		// BindGlfwFunctions();
 
 		glEnable(GL_DEPTH_TEST);
 
@@ -168,11 +168,11 @@ namespace demo {
 
 	void DemoCameraClass::BindGlfwFunctions(GLFWwindow* window)
 	{
-		glfwSetCursorPosCallback(window, mouse_callback);
-		glfwSetScrollCallback(window, scroll_callback);
+		// glfwSetCursorPosCallback(window, mouse_callback);
+		// glfwSetScrollCallback(window, scroll_callback);
 	}
 
-	void DemoCameraClass::mouse_callback(GLFWwindow* window, double xpos, double ypos)
+	/*void DemoCameraClass::mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	{
 		float xoffset = xpos - m_LastX;
 		float yoffset = m_LastY - ypos; // reversed since y-coordinates go from bottom to top
@@ -186,6 +186,6 @@ namespace demo {
 	void DemoCameraClass::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 	{
 		m_Camera.processMouseScroll(yoffset);
-	}
+	}*/
 
 }

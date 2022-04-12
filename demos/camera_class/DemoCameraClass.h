@@ -27,8 +27,9 @@ namespace demo {
 		Camera m_Camera;
 		glm::vec3 m_CubePositions[];
 
+		// TODO: Get the window reference from WindowManager ?
 		void BindGlfwFunctions(GLFWwindow* window) override;
-		static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-		static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+		// static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+		// static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 	};
 }

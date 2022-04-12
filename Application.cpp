@@ -1,14 +1,15 @@
 #include <iostream>
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+// #include <glad/glad.h>
+// #include <GLFW/glfw3.h>
+// #include <glm/glm.hpp>
+// #include <glm/gtc/matrix_transform.hpp>
+// #include <glm/gtc/type_ptr.hpp>
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_glfw.h>
 #include <imgui/imgui_impl_opengl3.h>
 
+#include "WindowManager.h"
 #include "Constants.h"
 
 #include "camera.h"
@@ -29,17 +30,17 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
-float lastX = Constants::LAST_X;
-float lastY = Constants::LAST_Y;
+// Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
+// float lastX = Constants::LAST_X;
+// float lastY = Constants::LAST_Y;
 
 // timing
-float deltaTime = 0.0f; // time between current frame and last frame
-float lastFrame = 0.0f;
+// float deltaTime = 0.0f; // time between current frame and last frame
+// float lastFrame = 0.0f;
 
 int main()
 {
-	glfwInit();
+	/*glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -54,28 +55,36 @@ int main()
 		std::cout << "Failed to create GLFW window" << '\n';
 		glfwTerminate();
 		return -1;
-	}
+	}*/
 
-	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	glfwSetCursorPosCallback(window, mouse_callback);
+	// glfwMakeContextCurrent(window);
+
+	// ========================================================================
+	// TODO: Implementar os callbacks no WindowManager
+
+	// glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	// glfwSetCursorPosCallback(window, mouse_callback);
 	// glfwSetScrollCallback(window, scroll_callback);
-	glfwSetCursorPos(window, lastX, lastY);
+	// ========================================================================
+
+	// glfwSetCursorPos(window, lastX, lastY);
 
 	// Capture the mouse cursor
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL); // GLFW_CURSOR_NORMAL - GLFW_CURSOR_DISABLED
+	// glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL); // GLFW_CURSOR_NORMAL - GLFW_CURSOR_DISABLED
 
 	// Glad load all OpenGL function pointers
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	/*if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "Failed to initialize GLAD" << '\n';
 		return -1;
-	}
+	}*/
+
+	WindowManager windowManager;
 
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplGlfw_InitForOpenGL(windowManager.GetWindow(), true);
 	ImGui_ImplOpenGL3_Init("#version 330");
 
 	demo::Demo* currentDemo = nullptr;
@@ -94,19 +103,21 @@ int main()
 	menu->RegisterDemo<demo::DemoCameraClass>("Camera Class");
 
 	// Render loop
-	while (!glfwWindowShouldClose(window))
+	while (!windowManager.WindowShouldClose())
 	{
 
+		windowManager.CalculateDeltaTime();
+		/*
 		float time = glfwGetTime();
 		// per-frame time logic
 		float currentFrame = time;
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
+		*/
 
-		// processInput(window);
-
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		windowManager.ClearScreen();
+		//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Init ImGui
 		ImGui_ImplOpenGL3_NewFrame();
@@ -116,8 +127,8 @@ int main()
 
 		if (currentDemo)
 		{
-			currentDemo->ProcessInput(window);
-			currentDemo->OnUpdate(deltaTime);
+			currentDemo->ProcessInput(windowManager.GetWindow());
+			currentDemo->OnUpdate(windowManager.GetDeltaTime());
 			currentDemo->OnRender();
 			if (currentDemo != menu && ImGui::Button("Back"))
 			{
@@ -132,8 +143,6 @@ int main()
 		ImGui::Spacing();
 		ImGui::Text("General settings");
 		ImGui::Spacing();
-		ImGui::SliderFloat3("Camera Pos", &camera.Position.x, -5.0f, 5.0f);
-		ImGui::Spacing();
 		ImGui::Separator();
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		ImGui::Text("ImGui %s", IMGUI_VERSION);
@@ -142,8 +151,10 @@ int main()
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		glfwSwapBuffers(window); // Swap the front buffer and the back buffer
-		glfwPollEvents(); // Checks if any events are triggered (like keyboard)
+		windowManager.SwapBuffers();
+		// glfwSwapBuffers(window); // Swap the front buffer and the back buffer
+		windowManager.PollEvents();
+		// glfwPollEvents(); // Checks if any events are triggered (like keyboard)
 	}
 
 	if (currentDemo != menu)
@@ -155,38 +166,14 @@ int main()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 
-	glfwTerminate();
+	windowManager.Terminate();
+	// glfwTerminate();
 	return 0;
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+/*void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
-}
-
-/*void processInput(GLFWwindow* window)
-{
-	// close window
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
-
-	// enable 'wireframe' mode
-	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	// disable 'wireframe' mode
-	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	// camera movement
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		camera.processKeyboard(FORWARD, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		camera.processKeyboard(BACKWARD, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		camera.processKeyboard(LEFT, deltaTime);
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		camera.processKeyboard(RIGHT, deltaTime);
 }*/
 
 /*void mouse_callback(GLFWwindow* window, double xpos, double ypos)
