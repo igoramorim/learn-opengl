@@ -79,12 +79,12 @@ int main()
 		return -1;
 	}*/
 
-	WindowManager windowManager;
+	auto windowManager = WindowManager::instance();
 
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
-	ImGui_ImplGlfw_InitForOpenGL(windowManager.GetWindow(), true);
+	ImGui_ImplGlfw_InitForOpenGL(windowManager->GetWindow(), true);
 	ImGui_ImplOpenGL3_Init("#version 330");
 
 	demo::Demo* currentDemo = nullptr;
@@ -103,10 +103,10 @@ int main()
 	menu->RegisterDemo<demo::DemoCameraClass>("Camera Class");
 
 	// Render loop
-	while (!windowManager.WindowShouldClose())
+	while (!windowManager->WindowShouldClose())
 	{
 
-		windowManager.CalculateDeltaTime();
+		windowManager->CalculateDeltaTime();
 		/*
 		float time = glfwGetTime();
 		// per-frame time logic
@@ -115,7 +115,7 @@ int main()
 		lastFrame = currentFrame;
 		*/
 
-		windowManager.ClearScreen();
+		windowManager->ClearScreen();
 		//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -127,8 +127,8 @@ int main()
 
 		if (currentDemo)
 		{
-			currentDemo->ProcessInput(windowManager.GetWindow());
-			currentDemo->OnUpdate(windowManager.GetDeltaTime());
+			currentDemo->ProcessInput();
+			currentDemo->OnUpdate(windowManager->GetDeltaTime());
 			currentDemo->OnRender();
 			if (currentDemo != menu && ImGui::Button("Back"))
 			{
@@ -151,9 +151,9 @@ int main()
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		windowManager.SwapBuffers();
+		windowManager->SwapBuffers();
 		// glfwSwapBuffers(window); // Swap the front buffer and the back buffer
-		windowManager.PollEvents();
+		windowManager->PollEvents();
 		// glfwPollEvents(); // Checks if any events are triggered (like keyboard)
 	}
 
@@ -166,7 +166,7 @@ int main()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 
-	windowManager.Terminate();
+	windowManager->Terminate();
 	// glfwTerminate();
 	return 0;
 }

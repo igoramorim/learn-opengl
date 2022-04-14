@@ -1,5 +1,6 @@
 #include "DemoCameraClass.h"
 #include "../../Constants.h"
+#include "../../WindowManager.h";
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -13,14 +14,15 @@ namespace demo {
 		m_SmileTex{ "textures/awesomeface.png", GL_TEXTURE_2D, GL_TEXTURE1, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE },
 		m_Camera{ glm::vec3(0.0f, 0.0f, 3.0f) },
 		m_CubePositions{
-			glm::vec3(0.0f,  0.0f,  0.0f),
-			glm::vec3(2.0f,  5.0f, -15.0f),
-			glm::vec3(-1.5f, -2.2f, -2.5f),
+			glm::vec3( 0.0f,  0.0f,   0.0f),
+			glm::vec3( 2.0f,  5.0f, -15.0f),
+			glm::vec3(-1.5f, -2.2f,  -2.5f),
 			glm::vec3(-3.8f, -2.0f, -12.3f),
-			glm::vec3(2.4f, -0.4f, -3.5f)
-		}
+			glm::vec3( 2.4f, -0.4f,  -3.5f)
+		},
+		m_Window{ WindowManager::instance()->GetWindow() }
 	{
-		// BindGlfwFunctions();
+		BindGlfwFunctions();
 
 		glEnable(GL_DEPTH_TEST);
 
@@ -141,33 +143,34 @@ namespace demo {
 
 	}
 
-	void DemoCameraClass::ProcessInput(GLFWwindow* window)
+	void DemoCameraClass::ProcessInput()
 	{
 		// close window
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-			glfwSetWindowShouldClose(window, true);
+		if (glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			glfwSetWindowShouldClose(m_Window, true);
 
 		// enable 'wireframe' mode
-		if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+		if (glfwGetKey(m_Window, GLFW_KEY_L) == GLFW_PRESS)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		// disable 'wireframe' mode
-		if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+		if (glfwGetKey(m_Window, GLFW_KEY_F) == GLFW_PRESS)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 		// camera movement
-		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		if (glfwGetKey(m_Window, GLFW_KEY_W) == GLFW_PRESS)
 			m_Camera.processKeyboard(FORWARD, m_DeltaTime);
-		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		if (glfwGetKey(m_Window, GLFW_KEY_S) == GLFW_PRESS)
 			m_Camera.processKeyboard(BACKWARD, m_DeltaTime);
-		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		if (glfwGetKey(m_Window, GLFW_KEY_A) == GLFW_PRESS)
 			m_Camera.processKeyboard(LEFT, m_DeltaTime);
-		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		if (glfwGetKey(m_Window, GLFW_KEY_D) == GLFW_PRESS)
 			m_Camera.processKeyboard(RIGHT, m_DeltaTime);
 	}
 
-	void DemoCameraClass::BindGlfwFunctions(GLFWwindow* window)
+	void DemoCameraClass::BindGlfwFunctions()
 	{
+		std::cout << "Bind function : DemoraCameraClass\n";
 		// glfwSetCursorPosCallback(window, mouse_callback);
 		// glfwSetScrollCallback(window, scroll_callback);
 	}

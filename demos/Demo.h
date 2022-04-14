@@ -24,10 +24,10 @@ namespace demo {
 		virtual void OnUpdate(float deltaTime) {}
 		virtual void OnRender() {}
 		virtual void OnImGuiRender() {}
-		virtual void ProcessInput(GLFWwindow* window) {}
+		virtual void ProcessInput() {}
 
-	private:
-		virtual void BindGlfwFunctions(GLFWwindow* window) {}
+	protected:
+		virtual void BindGlfwFunctions() {}
 
 	protected:
 		float m_DeltaTime;
@@ -47,13 +47,6 @@ namespace demo {
 		{
 			std::cout << "Registering demo: " << name << '\n';
 			m_Demos.push_back(std::make_pair(name, []() { return new T(); }));
-		}
-
-		void ProcessInput(GLFWwindow* window)
-		{
-			// close window
-			if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-				glfwSetWindowShouldClose(window, true);
 		}
 
 	private:
