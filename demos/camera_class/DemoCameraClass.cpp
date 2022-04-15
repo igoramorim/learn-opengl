@@ -15,7 +15,7 @@ namespace demo {
 		m_Camera{ glm::vec3(0.0f, 0.0f, 3.0f) },
 		m_CubePositions{
 			glm::vec3( 0.0f,  0.0f,   0.0f),
-			glm::vec3( 2.0f,  5.0f, -15.0f),
+			glm::vec3( 0.0f,  1.0f,   0.0f),
 			glm::vec3(-1.5f, -2.2f,  -2.5f),
 			glm::vec3(-3.8f, -2.0f, -12.3f),
 			glm::vec3( 2.4f, -0.4f,  -3.5f)
@@ -128,9 +128,10 @@ namespace demo {
 		projectionMatrix = glm::perspective(glm::radians(m_Camera.Fov), (float)Constants::SCREEN_WIDTH / (float)Constants::SCREEN_HEIGHT, 0.1f, 100.0f);
 		m_Shader.setMat4("projection", projectionMatrix);
 
+		glm::mat4 modelMatrix;
 		for (unsigned int i = 0; i < 5; i++)
 		{
-			glm::mat4 modelMatrix = glm::mat4(1.0f);
+			modelMatrix = glm::mat4(1.0f);
 			modelMatrix = glm::translate(modelMatrix, m_CubePositions[i]);
 			m_Shader.setMat4("model", modelMatrix);
 

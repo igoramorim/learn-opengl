@@ -10,10 +10,7 @@ namespace demo {
 	DemoCoordinateSystemCube::DemoCoordinateSystemCube() :
 		m_Shader{ "shaders/coordinate-system.vs", "shaders/coordinate-system.fs" },
 		m_WoodTex{ "textures/container.jpg", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE },
-		m_SmileTex{ "textures/awesomeface.png", GL_TEXTURE_2D, GL_TEXTURE1, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE },
-		m_ModelMatrix{ glm::mat4(1.0f) },
-		m_ViewMatrix{ glm::mat4(1.0f) },
-		m_ProjectionMatrix{ glm::mat4(1.0f) }
+		m_SmileTex{ "textures/awesomeface.png", GL_TEXTURE_2D, GL_TEXTURE1, GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE }
 	{
 		// Vertex input data
 		float vertices[] = {
@@ -122,17 +119,17 @@ namespace demo {
 		/* Transformations to make it 3D
 		* ==========================================================================
 		*/
-		m_ModelMatrix = glm::mat4(1.0f);
-		m_ViewMatrix = glm::mat4(1.0f);
-		m_ProjectionMatrix = glm::mat4(1.0f);
+		glm::mat4 modelMatrix = glm::mat4(1.0f);
+		glm::mat4 viewMatrix = glm::mat4(1.0f);
+		glm::mat4 projectionMatrix = glm::mat4(1.0f);
 
-		m_ModelMatrix = glm::rotate(m_ModelMatrix, time * glm::radians(50.0f), glm::vec3(1.0f, 1.0f, 0.0f));
-		m_ViewMatrix = glm::translate(m_ViewMatrix, glm::vec3(0.0f, 0.0f, -3.0f));
-		m_ProjectionMatrix = glm::perspective(glm::radians(45.0f), (float)Constants::SCREEN_WIDTH / (float)Constants::SCREEN_HEIGHT, 0.1f, 100.0f);
+		modelMatrix = glm::rotate(modelMatrix, time * glm::radians(50.0f), glm::vec3(1.0f, 1.0f, 0.0f));
+		viewMatrix = glm::translate(viewMatrix, glm::vec3(0.0f, 0.0f, -3.0f));
+		projectionMatrix = glm::perspective(glm::radians(45.0f), (float)Constants::SCREEN_WIDTH / (float)Constants::SCREEN_HEIGHT, 0.1f, 100.0f);
 
-		m_Shader.setMat4("model", m_ModelMatrix);
-		m_Shader.setMat4("view", m_ViewMatrix);
-		m_Shader.setMat4("projection", m_ProjectionMatrix);
+		m_Shader.setMat4("model", modelMatrix);
+		m_Shader.setMat4("view", viewMatrix);
+		m_Shader.setMat4("projection", projectionMatrix);
 		// =========================================================================
 
 		glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices to make a cube

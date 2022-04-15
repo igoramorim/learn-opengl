@@ -22,9 +22,6 @@ namespace demo {
 		unsigned int m_VAO;
 		Texture m_WoodTex;
 		Texture m_SmileTex;
-		glm::mat4 m_ModelMatrix;
-		glm::mat4 m_ViewMatrix;
-		glm::mat4 m_ProjectionMatrix;
 	};
 
 }

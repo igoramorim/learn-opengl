@@ -26,7 +26,7 @@ namespace demo {
 		Texture m_WoodTex;
 		Texture m_SmileTex;
 		Camera m_Camera;
-		glm::vec3 m_CubePositions[];
+		glm::vec3 m_CubePositions[5];
 
 		void BindGlfwFunctions() override;
 	};
