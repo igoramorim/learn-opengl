@@ -19,10 +19,9 @@ namespace demo {
 			glm::vec3(-1.5f, -2.2f,  -2.5f),
 			glm::vec3(-3.8f, -2.0f, -12.3f),
 			glm::vec3( 2.4f, -0.4f,  -3.5f)
-		},
-		m_Window{ WindowManager::instance()->GetWindow() }
+		}
 	{
-		BindGlfwFunctions();
+		SetGlfwCallbackFunctions();
 
 		glEnable(GL_DEPTH_TEST);
 
@@ -146,9 +145,10 @@ namespace demo {
 
 	void DemoCameraClass::ProcessInput()
 	{
-		// close window
-		if (glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-			glfwSetWindowShouldClose(m_Window, true);
+		// TODO: ESC key not exiting de app. It should work because the event
+		// is processed on ProcessInput() from Demo class
+		// Is there something like 'super()' in C++ ? It would call ProcessInput() from Demo base class
+		// and then the code below?
 
 		// enable 'wireframe' mode
 		if (glfwGetKey(m_Window, GLFW_KEY_L) == GLFW_PRESS)
@@ -169,14 +169,27 @@ namespace demo {
 			m_Camera.processKeyboard(RIGHT, m_DeltaTime);
 	}
 
-	void DemoCameraClass::BindGlfwFunctions()
+	void DemoCameraClass::SetGlfwCallbackFunctions()
 	{
-		std::cout << "Bind function : DemoraCameraClass\n";
-		// glfwSetCursorPosCallback(window, mouse_callback);
-		// glfwSetScrollCallback(window, scroll_callback);
+		std::cout << "DemoCameraClass: Setting GLFW callbacks\n";
+
+		glfwSetWindowUserPointer(m_Window, this);
+
+		auto funcSetCursor = [](GLFWwindow* window, double xpos, double ypos)
+		{
+			static_cast<DemoCameraClass*>(glfwGetWindowUserPointer(window))->MouseCallback(window, xpos, ypos);
+		};
+
+		auto funcSetScroll = [](GLFWwindow* window, double xoffset, double yoffset)
+		{
+			static_cast<DemoCameraClass*>(glfwGetWindowUserPointer(window))->ScrollCallback(window, xoffset, yoffset);
+		};
+
+		glfwSetCursorPosCallback(m_Window, funcSetCursor);
+		glfwSetScrollCallback(m_Window, funcSetScroll);
 	}
 
-	/*void DemoCameraClass::mouse_callback(GLFWwindow* window, double xpos, double ypos)
+	void DemoCameraClass::MouseCallback(GLFWwindow* window, double xpos, double ypos)
 	{
 		float xoffset = xpos - m_LastX;
 		float yoffset = m_LastY - ypos; // reversed since y-coordinates go from bottom to top
@@ -187,9 +200,9 @@ namespace demo {
 		m_Camera.processMouseMovement(xoffset, yoffset);
 	}
 
-	void DemoCameraClass::scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+	void DemoCameraClass::ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 	{
 		m_Camera.processMouseScroll(yoffset);
-	}*/
+	}
 
 }

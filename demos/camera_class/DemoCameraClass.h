@@ -19,7 +19,6 @@ namespace demo {
 		void ProcessInput() override;
 		
 	private:
-		GLFWwindow* m_Window;
 		unsigned int m_VBO;
 		unsigned int m_VAO;
 		Shader m_Shader;
@@ -28,6 +27,8 @@ namespace demo {
 		Camera m_Camera;
 		glm::vec3 m_CubePositions[5];
 
-		void BindGlfwFunctions() override;
+		void SetGlfwCallbackFunctions() override;
+		void MouseCallback(GLFWwindow* window, double xpos, double ypos);
+		void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 	};
 }
