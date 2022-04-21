@@ -85,8 +85,8 @@ namespace demo {
 		glEnableVertexAttribArray(0);
 
 		// Texture Coord attribute
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(1);
 
 		m_WoodTex.texUnit(m_Shader, "texture1", 0);
 		m_SmileTex.texUnit(m_Shader, "texture2", 1);
