@@ -18,6 +18,7 @@
 #include "demos/coordinate_system_plane/DemoCoordinateSystemPlane.h"
 #include "demos/coordinate_system_cube/DemoCoordinateSystemCube.h"
 #include "demos/camera_class/DemoCameraClass.h"
+#include "demos/va_vb_ib_layout_classes/DemoEncapsulationClasses.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -48,6 +49,7 @@ int main()
 	menu->RegisterDemo<demo::DemoCoordinateSystemPlane>("Coordinate System: Plane");
 	menu->RegisterDemo<demo::DemoCoordinateSystemCube>("Coordinate System: Cube");
 	menu->RegisterDemo<demo::DemoCameraClass>("Camera Class");
+	menu->RegisterDemo<demo::DemoEncapsulationClasses>("Encapsulation Classes");
 
 	// Render loop
 	while (!windowManager->WindowShouldClose())

@@ -1148,6 +1148,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug triangles|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='materials|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="demos\va_vb_ib_layout_classes\DemoEncapsulationClasses.cpp" />
     <ClCompile Include="single_files\camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='camera1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='review1|x64'">true</ExcludedFromBuild>
@@ -1276,7 +1277,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='application|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug triangles|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="review1.cpp">
+    <ClCompile Include="single_files\review1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='textures|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='light1|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='materials|x64'">true</ExcludedFromBuild>
@@ -1434,6 +1435,7 @@
     <ClInclude Include="demos\texture_class\DemoTextureClass.h" />
     <ClInclude Include="demos\transformations\DemoTransformations.h" />
     <ClInclude Include="demos\triangles\DemoTriangles.h" />
+    <ClInclude Include="demos\va_vb_ib_layout_classes\DemoEncapsulationClasses.h" />
     <ClInclude Include="include\imgui\imconfig.h" />
     <ClInclude Include="include\imgui\imgui.h" />
     <ClInclude Include="include\imgui\imgui_impl_glfw.h" />

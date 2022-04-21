@@ -57,7 +57,7 @@
     <ClCompile Include="single_files\camera1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="review1.cpp">
+    <ClCompile Include="single_files\review1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="light1.cpp">
@@ -127,6 +127,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WindowManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="demos\va_vb_ib_layout_classes\DemoEncapsulationClasses.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -219,6 +222,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demos\va_vb_ib_layout_classes\DemoEncapsulationClasses.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
