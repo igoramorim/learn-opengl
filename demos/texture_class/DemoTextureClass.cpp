@@ -68,7 +68,7 @@ namespace demo {
 
 	void DemoTextureClass::OnRender()
 	{
-		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+		glClearColor(0.3f, 0.3f, 0.5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		m_WoodTex.activeAndBind();
