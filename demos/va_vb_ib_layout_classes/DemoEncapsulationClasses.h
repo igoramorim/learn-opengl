@@ -27,7 +27,7 @@ namespace demo {
 		Texture m_SmileTex;
 		Camera m_Camera;
 		VertexArray m_VA;
-		VertexBuffer m_VB;
+		// VertexBuffer m_VB;
 		IndexBuffer m_IB;
 		VertexBufferLayout m_VBLayout;
 		float m_Vertex[40];

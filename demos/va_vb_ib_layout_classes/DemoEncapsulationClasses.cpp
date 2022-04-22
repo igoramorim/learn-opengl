@@ -44,12 +44,21 @@ namespace demo {
 			4, 5, 7,
 			5, 6, 7
 		},
-		m_VB{ m_Vertex, sizeof(m_Vertex) },
+		// m_VB{ m_Vertex, sizeof(m_Vertex) },
 		m_IB{ m_Indices, sizeof(m_Indices) }
 	{
 		SetGlfwCallbackFunctions();
 
 		glEnable(GL_DEPTH_TEST);
+
+		/* TODO: for some reason the triangles does not render
+		*  when using the private member m_VB initialized in the constructor
+		* 
+		* When using the m_VB below it works
+		*/
+		VertexBuffer m_VB(m_Vertex, sizeof(m_Vertex));
+
+		// IndexBuffer m_IB(m_Indices, sizeof(m_Indices));
 
 		m_VBLayout.Push<float>(3); // position      - layout 0
 		m_VBLayout.Push<float>(2); // texture coord - layout 1
@@ -64,9 +73,9 @@ namespace demo {
 
 	DemoEncapsulationClasses::~DemoEncapsulationClasses()
 	{
-		m_VA.Delete();
-		m_VB.Delete();
-		m_IB.Delete();
+		// m_VA.Delete();
+		// m_VB.Delete();
+		// m_IB.Delete();
 		m_SmileTex.Delete();
 		m_WoodTex.Delete();
 	}
@@ -81,13 +90,13 @@ namespace demo {
 		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		m_VA.Bind();
-		m_IB.Bind();
+		// m_VA.Bind();
+		// m_IB.Bind();
 
 		m_WoodTex.activeAndBind();
 		m_SmileTex.activeAndBind();
 
-		glm::mat4 viewMatrix;
+		glm::mat4 viewMatrix = glm::mat4(1.0f);
 		viewMatrix = m_Camera.getViewMatrix();
 		m_Shader.setMat4("view", viewMatrix);
 
@@ -96,11 +105,11 @@ namespace demo {
 		m_Shader.setMat4("projection", projectionMatrix);
 
 		glm::mat4 modelMatrix = glm::mat4(1.0f);
-		modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 4.0f));
+		modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
 		m_Shader.setMat4("model", modelMatrix);
 
-		// glDrawArrays(GL_TRIANGLES, 0, 36);
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0); // TODO: Cube not rendering for some reason
+		glDrawArrays(GL_TRIANGLES, 0, 36); // Use with VertexArrays
+		// glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0); // Use with IndexBuffers
 	}
 
 	void DemoEncapsulationClasses::OnImGuiRender()
@@ -123,7 +132,7 @@ namespace demo {
 
 	void DemoEncapsulationClasses::SetGlfwCallbackFunctions()
 	{
-		std::cout << "DemoCameraClass: Setting GLFW callbacks\n";
+		std::cout << "DemoEncapsulationClasses: Setting GLFW callbacks\n";
 
 		glfwSetWindowUserPointer(m_Window, this);
 
